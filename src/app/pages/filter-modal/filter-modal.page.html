@@ -1,0 +1,143 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : EBookStore This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md">
+    <ion-buttons slot="start">
+      <ion-button (click)="onClose()" color="dark">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Filter</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="filter-screen">
+    <div class="box-content">
+      <ion-label class="title">Sort</ion-label>
+      <ion-radio-group name="auto" value="Trending">
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Trending</ion-label>
+          <ion-radio value="Trending" mode="md" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">New Release</ion-label>
+          <ion-radio value="New Release" mode="md" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Highest Rating</ion-label>
+          <ion-radio value="Highest Rating" mode="md" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Lowest Rating</ion-label>
+          <ion-radio value="Lowest Rating" mode="md" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Highest Price</ion-label>
+          <ion-radio value="Highest Price" mode="md" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Lowest Price</ion-label>
+          <ion-radio value="Lowest Price" mode="md" slot="start"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </div>
+
+    <div class="box-content">
+      <ion-label class="title">Price</ion-label>
+      <ion-range [min]="0" [max]="100" [pin]="true" [dualKnobs]="true" [ticks]="true"
+        [value]="{ lower: 20, upper: 80 }"></ion-range>
+    </div>
+
+    <div class="box-content">
+      <ion-label class="title">Rating</ion-label>
+      <ion-radio-group name="auto" value="All">
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">All</ion-label>
+          <ion-radio value="All" mode="md" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">4.5+</ion-label>
+          <ion-radio value="4.5+" mode="md" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">4.0+</ion-label>
+          <ion-radio value="4.0+" mode="md" slot="start"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </div>
+
+    <div class="box-content">
+      <ion-label class="title">Genre</ion-label>
+      <ion-item lines="none" class="item-content">
+        <ion-label class="lbl">All</ion-label>
+        <ion-checkbox value="All" mode="md" slot="start"></ion-checkbox>
+      </ion-item>
+      <ion-item lines="none" class="item-content" *ngFor="let item of util.types;">
+        <ion-label class="lbl">{{item.name}}</ion-label>
+        <ion-checkbox [value]="item.name" mode="md" slot="start"></ion-checkbox>
+      </ion-item>
+    </div>
+
+    <div class="box-content">
+      <ion-label class="title">Languges</ion-label>
+      <ion-radio-group name="auto" value="All">
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">All</ion-label>
+          <ion-radio value="All" mode="md" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">English</ion-label>
+          <ion-radio value="English" mode="md" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Hindi</ion-label>
+          <ion-radio value="Hindi" mode="md" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Gujarati</ion-label>
+          <ion-radio value="Gujarati" mode="md" slot="start"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </div>
+
+    <div class="box-content">
+      <ion-label class="title">Age</ion-label>
+      <ion-radio-group name="auto" value="All">
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">All</ion-label>
+          <ion-radio value="All" mode="md" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Age 12 & Under</ion-label>
+          <ion-radio value="12" mode="md" slot="start"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" class="item-content">
+          <ion-label class="lbl">Age 18 & Above</ion-label>
+          <ion-radio value="18" mode="md" slot="start"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" class="clear-btn" fill="clear" color="primary">
+          Reset
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="onClose()" expand="block" shape="round" color="primary">
+          Apply
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

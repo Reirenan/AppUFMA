@@ -1,0 +1,79 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : EBookStore This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="dark">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{name}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="dark">
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="dark" (click)="presentModal()">
+        <ion-icon slot="icon-only" name="options-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar mode="md">
+    <ion-title>Show in</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [color]="type == 'row' ? 'primary':'dark'" (click)="changeType('row')">
+        <ion-icon slot="icon-only" name="apps-outline"></ion-icon>
+      </ion-button>
+      <ion-button [color]="type == 'column' ? 'primary':'dark'" (click)="changeType('column')">
+        <ion-icon slot="icon-only" name="reader-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="by-genre-screen">
+    <ion-row *ngIf="type =='row'">
+      <ion-col size="6" *ngFor="let item of util.bookesList">
+        <div class="book-info" (click)="onBookInfo(item.title)">
+          <div class="cover" [ngStyle]="{'background-image': 'url('+item.imageLink+')'}">
+          </div>
+          <ion-label class="name">{{ (item.title.length>18)? (item.title | slice:0:18)+'..':(item.title) }}</ion-label>
+          <ion-label class="author"> By : {{ (item.author.length>18)?
+            (item.author | slice:0:18)+'..':(item.author)
+            }}</ion-label>
+          <div class="other-info">
+            <ion-icon slot="start" name="star-half" color="medium"></ion-icon> &nbsp; <ion-label
+              class="lbl">4.5</ion-label> &nbsp;&nbsp; <ion-label class="lbl">₹{{item.pages}}.00</ion-label>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <div class="column-list" *ngIf="type =='column'">
+      <ion-row *ngFor="let item of util.bookesList" class="book-info-column" (click)="onBookInfo(item.title)">
+        <ion-col size="4">
+          <div class="cover" [ngStyle]="{'background-image': 'url('+item.imageLink+')'}">
+          </div>
+        </ion-col>
+        <ion-col size="8">
+          <div class="name-content">
+            <ion-label class="name">{{ item.title
+              }}</ion-label>
+            <ion-label class="author"> By : {{ item.author }}</ion-label>
+            <ion-label class="lbl"><ion-icon slot="start" name="star-half" color="medium"></ion-icon> &nbsp;
+              4.5</ion-label>
+            <ion-label class="lbl">₹{{item.pages}}.00</ion-label>
+            <div class="type-list">
+              <ion-label *ngFor="let name of util.types.slice(0,3)" class="lbl">{{name.name}}</ion-label>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,102 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : EBookStore This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md">
+    <ion-title>BookStore</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="dark">
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="dark" (click)="onNotification()">
+        <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="home-screen">
+    <swiper-container slides-per-view="2.4" speed="500" loop="false" css-mode="true" space-between="10">
+      <swiper-slide *ngFor="let item of util.bookesList.slice(0,10)">
+        <div class="book-info" (click)="onBookInfo(item.title)">
+          <div class="cover" [ngStyle]="{'background-image': 'url('+item.imageLink+')'}">
+          </div>
+          <ion-label class="name">{{ (item.title.length>18)? (item.title | slice:0:18)+'..':(item.title) }}</ion-label>
+          <ion-label class="author"> By : {{ (item.author.length>18)?
+            (item.author | slice:0:18)+'..':(item.author)
+            }}</ion-label>
+          <div class="other-info">
+            <ion-icon slot="start" name="star-half" color="medium"></ion-icon> &nbsp; <ion-label
+              class="lbl">4.5</ion-label> &nbsp;&nbsp; <ion-label class="lbl">₹{{item.pages}}.00</ion-label>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+    <div class="main-title">
+      <ion-label class="title">Explore by Genre</ion-label>
+      <ion-icon name="arrow-forward" color="primary" (click)="onAllGenre()"></ion-icon>
+    </div>
+
+
+    <swiper-container slides-per-view="2.4" speed="500" loop="false" css-mode="true" space-between="10">
+      <swiper-slide *ngFor="let item of util.types;">
+        <div class="type-info" [ngStyle]="{'background-image': 'url('+item.image+')'}" (click)="byGenre(item.name)">
+          <div class="overlay">
+            <ion-label class="title"> {{item.name}} </ion-label>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+    <div class="main-title">
+      <ion-label class="title">Recommended For You</ion-label>
+      <ion-icon name="arrow-forward" color="primary"></ion-icon>
+    </div>
+
+    <swiper-container slides-per-view="2.4" speed="500" loop="false" css-mode="true" space-between="10">
+      <swiper-slide *ngFor="let item of util.bookesList.slice(10,20)">
+        <div class="book-info" (click)="onBookInfo(item.title)">
+          <div class="cover" [ngStyle]="{'background-image': 'url('+item.imageLink+')'}">
+          </div>
+          <ion-label class="name">{{ (item.title.length>18)? (item.title | slice:0:18)+'..':(item.title) }}</ion-label>
+          <ion-label class="author"> By : {{ (item.author.length>18)?
+            (item.author | slice:0:18)+'..':(item.author)
+            }}</ion-label>
+          <div class="other-info">
+            <ion-icon slot="start" name="star-half" color="medium"></ion-icon> &nbsp; <ion-label
+              class="lbl">4.5</ion-label> &nbsp;&nbsp; <ion-label class="lbl">₹{{item.pages}}.00</ion-label>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+    <div class="main-title">
+      <ion-label class="title">On Your Purchased</ion-label>
+      <ion-icon name="arrow-forward" color="primary"></ion-icon>
+    </div>
+
+    <swiper-container slides-per-view="2.4" speed="500" loop="false" css-mode="true" space-between="10">
+      <swiper-slide *ngFor="let item of util.bookesList.slice(20,30)">
+        <div class="book-info" (click)="onBookInfo(item.title)">
+          <div class="cover" [ngStyle]="{'background-image': 'url('+item.imageLink+')'}">
+          </div>
+          <ion-label class="name">{{ (item.title.length>18)? (item.title | slice:0:18)+'..':(item.title) }}</ion-label>
+          <ion-label class="author"> By : {{ (item.author.length>18)?
+            (item.author | slice:0:18)+'..':(item.author)
+            }}</ion-label>
+          <div class="other-info">
+            <ion-icon slot="start" name="star-half" color="medium"></ion-icon> &nbsp; <ion-label
+              class="lbl">4.5</ion-label> &nbsp;&nbsp; <ion-label class="lbl">₹{{item.pages}}.00</ion-label>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+  </div>
+</ion-content>

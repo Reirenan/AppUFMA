@@ -1,0 +1,144 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : EBookStore This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="dark">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <div class="progress">
+        <div class="active-progress" [style.width.%]="progressWidth"></div>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="basic-info-screen">
+    <swiper-container #swiper [slidesPerView]="1" [allowTouchMove]="false" (slidechange)="changed()">
+      <swiper-slide>
+        <div class="info-content">
+          <ion-label class="title">What is your gender?</ion-label>
+          <ion-label class="sub-title">Select gender for better content.</ion-label>
+          <ion-radio-group name="gender" value="tesla">
+            <ion-item lines="none" class="radio-item">
+              <ion-label>I am male</ion-label>
+              <ion-radio value="tesla" mode="md" slot="start"></ion-radio>
+            </ion-item>
+            <ion-item lines="none" class="radio-item">
+              <ion-label>I am female</ion-label>
+              <ion-radio value="ford" mode="md" slot="start"></ion-radio>
+            </ion-item>
+            <ion-item lines="none" class="radio-item">
+              <ion-label>Rather not to say</ion-label>
+              <ion-radio value="non" mode="md" slot="start"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="info-content">
+          <ion-label class="title">Choose Your Age</ion-label>
+          <ion-label class="sub-title">Select age range for better content!</ion-label>
+          <ion-row>
+            <ion-col size="6" *ngFor="let item of ageRange">
+              <ion-button (click)="changeAge(item)" expand="block" [fill]="selectedAge == item ? 'solid':'outline'"
+                shape="round">
+                {{item}}
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="info-content">
+          <ion-label class="title">Choose the Book Genre You Like</ion-label>
+          <ion-label class="sub-title">Select your preferred book genre for better recommendations, or you can skip
+            it.</ion-label>
+          <div class="chip-content">
+            <ion-chip color="primary" mode="md" [outline]="savedType.includes(item) ? 'false':'true'"
+              (click)="saveBookType(item)" *ngFor="let item of bookType">
+              <ion-label>{{item}}</ion-label>
+            </ion-chip>
+          </div>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="info-content">
+          <ion-label class="title">Complete Your Profile</ion-label>
+          <ion-label class="sub-title">Don't worry, only you can see your personal data. No one else will be able to see
+            it.</ion-label>
+          <ion-item lines="none" class="item-content">
+            <ion-label position="stacked" class="stack-lbl">Full Name</ion-label>
+            <ion-input placeholder="Full Name" type="text"></ion-input>
+          </ion-item>
+          <ion-item lines="none" class="item-content">
+            <ion-label position="stacked" class="stack-lbl">Phone Number</ion-label>
+            <ion-input placeholder="Phone Number" type="number"></ion-input>
+          </ion-item>
+          <ion-item lines="none" class="item-content">
+            <ion-label position="stacked" class="stack-lbl">Date of Birth</ion-label>
+            <ion-input placeholder="DD/MM/YYY" type="date"></ion-input>
+          </ion-item>
+          <ion-item lines="none" class="item-content-select">
+            <ion-label>Country</ion-label>
+            <ion-select value="peperoni" placeholder="Country">
+              <ion-select-option value="peperoni">India</ion-select-option>
+              <ion-select-option value="hawaii">United States</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="info-content">
+          <ion-label class="title">Create an Account</ion-label>
+          <ion-label class="sub-title">Enter your username, email & password. If you forget it, then you have to do
+            forgot password</ion-label>
+          <ion-item lines="none" class="item-content">
+            <ion-label position="stacked" class="stack-lbl">Username</ion-label>
+            <ion-input placeholder="Username" type="text"></ion-input>
+          </ion-item>
+          <ion-item lines="none" class="item-content">
+            <ion-label position="stacked" class="stack-lbl">Email</ion-label>
+            <ion-input placeholder="Email" type="email"></ion-input>
+          </ion-item>
+          <ion-item lines="none" class="item-content">
+            <ion-label position="stacked" class="stack-lbl">Password</ion-label>
+            <ion-input placeholder="Password" [type]="passwordView == false ? 'password':'text'"></ion-input>
+            <ion-icon slot="end" [name]="passwordView == false ? 'eye-off-outline':'eye-outline'" color="primary"
+              (click)="changePasswordViews()"></ion-icon>
+          </ion-item>
+          <ion-item lines="none" class="item-content">
+            <ion-label position="stacked" class="stack-lbl">Confirm Password</ion-label>
+            <ion-input placeholder="Confirm Password" [type]="passwordView == false ? 'password':'text'"></ion-input>
+            <ion-icon slot="end" [name]="passwordView == false ? 'eye-off-outline':'eye-outline'" color="primary"
+              (click)="changePasswordViews()"></ion-icon>
+          </ion-item>
+          <ion-item lines="none" class=check-item>
+            <ion-label class="lbl">Remember me </ion-label>
+            <ion-checkbox mode="md" slot="start"></ion-checkbox>
+          </ion-item>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" shape="round" color="primary" (click)="onNext()">
+      Continue
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

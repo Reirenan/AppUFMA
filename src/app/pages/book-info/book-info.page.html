@@ -1,0 +1,194 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : EBookStore This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="dark">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="primary">
+        <ion-icon slot="icon-only" name="document"></ion-icon>
+      </ion-button>
+      <ion-button color="dark">
+        <ion-icon slot="icon-only" name="paper-plane-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="book-info-screen">
+    <div class="content-loader" *ngIf="loaded == false">
+      <ion-spinner name="circular" color="primary"></ion-spinner>
+    </div>
+    <div class="content-info">
+      <ion-row class="book-info-column">
+        <ion-col size="4">
+          <div class="cover" [ngStyle]="{'background-image': 'url('+cover+')'}">
+          </div>
+        </ion-col>
+        <ion-col size="8">
+          <div class="name-content">
+            <ion-label class="name">{{ name }}</ion-label>
+            <ion-label class="author"> By : {{ author }}</ion-label>
+            <ion-label class="lbl">Released on Dec. {{year}}</ion-label>
+            <div class="type-list">
+              <ion-label *ngFor="let name of util.types.slice(0,3)" class="lbl">{{name.name}}</ion-label>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="more-info">
+        <ion-col size="3">
+          <ion-label class="title">4.9 &nbsp; <ion-icon slot="end" name="star-half" color="dark"></ion-icon>
+          </ion-label>
+          <ion-label class="sub-title">9.5K reviews</ion-label>
+        </ion-col>
+        <ion-col size="3">
+          <ion-label class="title">5.6 MB</ion-label>
+          <ion-label class="sub-title">size</ion-label>
+        </ion-col>
+        <ion-col size="3">
+          <ion-label class="title">859</ion-label>
+          <ion-label class="sub-title">pages</ion-label>
+        </ion-col>
+        <ion-col size="3">
+          <ion-label class="title">5.6M+</ion-label>
+          <ion-label class="sub-title">purchase</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-button expand="block" fill="solid" shape="round" color="primary" (click)="onPayment()">
+        Buy Rupee ₹{{price}}.00
+      </ion-button>
+
+      <div class="main-title">
+        <ion-label class="title">About this EBook</ion-label>
+        <ion-icon name="arrow-forward" color="primary" (click)="onAbout()"></ion-icon>
+      </div>
+      <ion-label class="desc">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+        a type specimen book.
+      </ion-label>
+
+      <div class="main-title">
+        <ion-label class="title">Rating & Reviews</ion-label>
+        <ion-icon name="arrow-forward" color="primary" (click)="onReviewList()"></ion-icon>
+      </div>
+
+      <ion-row class="review-info">
+        <ion-col size="5" style="border-right: 2px solid lightgray;">
+          <div class="content">
+            <ion-label class="title">4.9</ion-label>
+            <div class="star-list">
+              <ion-icon slot="start" name="star" color="warning"></ion-icon>
+              <ion-icon slot="start" name="star" color="warning"></ion-icon>
+              <ion-icon slot="start" name="star" color="warning"></ion-icon>
+              <ion-icon slot="start" name="star" color="warning"></ion-icon>
+              <ion-icon slot="start" name="star-half" color="warning"></ion-icon>
+            </div>
+            <ion-label class="sub-title">6.8k reviews</ion-label>
+          </div>
+        </ion-col>
+        <ion-col size="7">
+          <div class="review-stats">
+            <div class="lbl-content">
+              <ion-label class="lbl">5</ion-label>
+              <div class="line"> <span class="active" [style.width.%]="80"></span> </div>
+            </div>
+            <div class="lbl-content">
+              <ion-label class="lbl">4</ion-label>
+              <div class="line"> <span class="active" [style.width.%]="60"></span> </div>
+            </div>
+            <div class="lbl-content">
+              <ion-label class="lbl">3</ion-label>
+              <div class="line"> <span class="active" [style.width.%]="40"></span> </div>
+            </div>
+            <div class="lbl-content">
+              <ion-label class="lbl">2</ion-label>
+              <div class="line"> <span class="active" [style.width.%]="20"></span> </div>
+            </div>
+            <div class="lbl-content">
+              <ion-label class="lbl">1</ion-label>
+              <div class="line"> <span class="active" [style.width.%]="10"></span> </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <div class="write-reviews">
+        <ion-label class="title">Rate this EBook</ion-label>
+        <div class="star-list">
+          <ion-icon slot="start" [name]="writeRate >= 1 ? 'star':'star-outline'"
+            [color]="writeRate >= 1 ? 'warning':'dark'" (click)="changeReview(1)"></ion-icon>
+          <ion-icon slot="start" [name]="writeRate >= 2 ? 'star':'star-outline'"
+            [color]="writeRate >= 2 ? 'warning':'dark'" (click)="changeReview(2)"></ion-icon>
+          <ion-icon slot="start" [name]="writeRate >= 3 ? 'star':'star-outline'"
+            [color]="writeRate >= 3 ? 'warning':'dark'" (click)="changeReview(3)"></ion-icon>
+          <ion-icon slot="start" [name]="writeRate >= 4 ? 'star':'star-outline'"
+            [color]="writeRate >= 4 ? 'warning':'dark'" (click)="changeReview(4)"></ion-icon>
+          <ion-icon slot="start" [name]="writeRate >= 5 ? 'star':'star-outline'"
+            [color]="writeRate >= 5 ? 'warning':'dark'" (click)="changeReview(5)"></ion-icon>
+        </div>
+        <ion-button expand="block" fill="outline" shape="round" color="primary" size="small">
+          Write a Review
+        </ion-button>
+      </div>
+
+      <div class="main-title">
+        <ion-label class="title">{{name}} Series</ion-label>
+        <ion-icon name="arrow-forward" color="primary"></ion-icon>
+      </div>
+
+      <swiper-container slides-per-view="2.4" speed="500" loop="false" css-mode="true" space-between="10">
+        <swiper-slide *ngFor="let item of util.bookesList.slice(0,10)">
+          <div class="book-info" (click)="onBookInfo(item.title)">
+            <div class="cover" [ngStyle]="{'background-image': 'url('+item.imageLink+')'}">
+            </div>
+            <ion-label class="name">{{ (item.title.length>18)? (item.title | slice:0:18)+'..':(item.title)
+              }}</ion-label>
+            <ion-label class="author"> By : {{ (item.author.length>18)?
+              (item.author | slice:0:18)+'..':(item.author)
+              }}</ion-label>
+            <div class="other-info">
+              <ion-icon slot="start" name="star-half" color="medium"></ion-icon> &nbsp; <ion-label
+                class="lbl">4.5</ion-label> &nbsp;&nbsp; <ion-label class="lbl">₹{{item.pages}}.00</ion-label>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+
+      <div class="main-title">
+        <ion-label class="title">Similar EBook</ion-label>
+        <ion-icon name="arrow-forward" color="primary"></ion-icon>
+      </div>
+
+      <swiper-container slides-per-view="2.4" speed="500" loop="false" css-mode="true" space-between="10">
+        <swiper-slide *ngFor="let item of util.bookesList.slice(50,60)">
+          <div class="book-info" (click)="onBookInfo(item.title)">
+            <div class="cover" [ngStyle]="{'background-image': 'url('+item.imageLink+')'}">
+            </div>
+            <ion-label class="name">{{ (item.title.length>18)? (item.title | slice:0:18)+'..':(item.title)
+              }}</ion-label>
+            <ion-label class="author"> By : {{ (item.author.length>18)?
+              (item.author | slice:0:18)+'..':(item.author)
+              }}</ion-label>
+            <div class="other-info">
+              <ion-icon slot="start" name="star-half" color="medium"></ion-icon> &nbsp; <ion-label
+                class="lbl">4.5</ion-label> &nbsp;&nbsp; <ion-label class="lbl">₹{{item.pages}}.00</ion-label>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,68 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : EBookStore This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md">
+    <ion-title>Wishlist</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="dark">
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="dark" (click)="presentModal()">
+        <ion-icon slot="icon-only" name="options-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="by-genre-screen">
+
+    <div class="column-list">
+      <ion-row *ngFor="let item of util.bookesList" class="book-info-column">
+        <ion-col size="4" (click)="onBookInfo(item.title)">
+          <div class="cover" [ngStyle]="{'background-image': 'url('+item.imageLink+')'}">
+          </div>
+        </ion-col>
+        <ion-col size="7">
+          <div class="name-content">
+            <ion-label class="name">{{ item.title
+              }}</ion-label>
+            <ion-label class="author"> By : {{ item.author }}</ion-label>
+            <ion-label class="lbl"><ion-icon slot="start" name="star-half" color="medium"></ion-icon> &nbsp;
+              4.5</ion-label>
+            <ion-label class="lbl">₹{{item.pages}}.00</ion-label>
+            <div class="type-list">
+              <ion-label *ngFor="let name of util.types.slice(0,3)" class="lbl">{{name.name}}</ion-label>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="1" class="btn-end">
+          <ion-icon name="ellipsis-vertical" [id]="item.title"></ion-icon>
+          <ion-popover [trigger]="item.title" triggerAction="click">
+            <ng-template>
+              <ion-content class="ion-padding">
+                <ion-item lines="none" class="context-menu-btn">
+                  <ion-icon slot="start" name="document-outline"></ion-icon>
+                  <ion-label>Remove from Wishlist</ion-label>
+                </ion-item>
+                <ion-item lines="none" class="context-menu-btn">
+                  <ion-icon slot="start" name="paper-plane-outline"></ion-icon>
+                  <ion-label>Share</ion-label>
+                </ion-item>
+                <ion-item lines="none" class="context-menu-btn">
+                  <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+                  <ion-label>About EBook</ion-label>
+                </ion-item>
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

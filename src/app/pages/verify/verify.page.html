@@ -1,0 +1,38 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : EBookStore This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-header class="ion-no-border">
+  <ion-toolbar mode="md">
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="dark">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="login-screen">
+    <ion-label class="title">You've Got Mail ✉️</ion-label>
+    <ion-label class="sub-title">We have sent the OTP verification code to your email address. Check your email and
+      enter the code below. </ion-label>
+
+    <div class="otp-content">
+      <ng-otp-input
+        [config]="{length:4,isPasswordInput:false,inputStyles:{'width': '50px','height': '50px','border':'1px solid lightgray','background-color':'#f3f3f3'},placeholder:'*'}"></ng-otp-input>
+    </div>
+    <ion-label class="extra-lbl">Didn't received email?</ion-label>
+    <ion-label class="extra-lbl">You can resend code in <span class="active">44</span> sec. </ion-label>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" shape="round" color="primary" (click)="onNext()">
+      Continue
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

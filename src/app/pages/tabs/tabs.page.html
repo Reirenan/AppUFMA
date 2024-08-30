@@ -1,0 +1,35 @@
+<!--
+  Authors : initappz (Rahul Jograna)
+  Website : https://initappz.com/
+  App Name : EBookStore This App Template Source code is licensed as per the
+  terms found in the Website https://initappz.com/license
+  Copyright and Good Faith Purchasers © 2023-present initappz.
+-->
+<ion-tabs (ionTabsDidChange)="tabChanged($event)">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon aria-hidden="true" [name]="activeTab == 'home' ? 'home' :'home-outline' "></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="discover">
+      <ion-icon aria-hidden="true" [name]="activeTab == 'discover' ? 'compass' :'compass-outline' "></ion-icon>
+      <ion-label>Discover</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="wishlist">
+      <ion-icon aria-hidden="true" [name]="activeTab == 'wishlist' ? 'reader' :'reader-outline' "></ion-icon>
+      <ion-label>Wishlist</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="purchased">
+      <ion-icon aria-hidden="true" [name]="activeTab == 'purchased' ? 'cart' :'cart-outline' "></ion-icon>
+      <ion-label>Purchased</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="account">
+      <ion-icon aria-hidden="true" [name]="activeTab == 'account' ? 'person' :'person-outline' "></ion-icon>
+      <ion-label>Account</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
