@@ -1,0 +1,71 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="onBack()" color="dark">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Postando um livro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="profile-info">
+    <ion-item lines="none" class="input-content">
+      <ion-input [(ngModel)]="bookName" placeholder="Book Name" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="input-content">
+      <ion-input [(ngModel)]="publicationDate" placeholder="Publication Date" type="date"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="input-content">
+      <ion-textarea [(ngModel)]="synopsis" placeholder="Synopsis" rows="5"></ion-textarea>
+    </ion-item>
+
+    <ion-item lines="none" class="input-content">
+      <ion-input [(ngModel)]="author" placeholder="Author" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="input-content">
+      <ion-select [(ngModel)]="isForTrade" placeholder="Is For Trade?">
+        <ion-select-option value="true">Yes</ion-select-option>
+        <ion-select-option value="false">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none" class="input-content">
+      <ion-input [(ngModel)]="condition" placeholder="Condition" type="text"></ion-input>
+    </ion-item>
+
+    <!-- Campo de upload de imagens -->
+    <ion-item lines="none" class="input-content">
+      <ion-label position="stacked">Upload Images</ion-label>
+      <input type="file" (change)="onFileChange($event)" accept="image/*" multiple hidden #fileInput>
+      <ion-button expand="block" color="primary" (click)="fileInput.click()">Escolher Imagens</ion-button>
+    </ion-item>
+
+    <!-- Pré-visualização das imagens -->
+    <div *ngIf="previewImages.length > 0" class="image-preview-container">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" *ngFor="let image of previewImages">
+            <ion-img [src]="image"></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <ion-item lines="none" class="input-content">
+      <ion-textarea [(ngModel)]="comments" placeholder="Comments" rows="4"></ion-textarea>
+    </ion-item>
+
+    <ion-item lines="none" class="input-content">
+      <ion-textarea [(ngModel)]="desiredTradeBooks" placeholder="Desired Trade Books" rows="4"></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="block" shape="round" color="primary" class="submit-btn" (click)="onSubmit()">
+      Continue
+    </ion-button>
+  </div>
+</ion-content>

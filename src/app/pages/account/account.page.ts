@@ -24,4 +24,8 @@ export class AccountPage implements OnInit {
   onPage(link: any) {
     this.util.navigateToPage(link);
   }
+  
+  onBack() {
+    this.util.onBack();
+  }
 }

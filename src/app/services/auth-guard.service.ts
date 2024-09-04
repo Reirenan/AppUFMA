@@ -35,7 +35,6 @@ export class AuthGuardService implements CanActivate {
         return true;
       } else {
         return this.router.parseUrl('/notPermission');
-
       }     
     } else {
       return this.router.parseUrl('/');

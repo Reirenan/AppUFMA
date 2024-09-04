@@ -20,6 +20,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
 
 import { ToastrModule } from 'ngx-toastr';
+import { HomePage } from '../home/home.page';
 
 @NgModule({
   imports: [

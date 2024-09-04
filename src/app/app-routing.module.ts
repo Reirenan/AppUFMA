@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomePageModule)
   },
   {
+    path: 'book-form',
+    loadChildren: () => import('./pages/book-form/book-form.module').then(m => m.BookFormPageModule)
+  },
+  {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   },
@@ -65,7 +69,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
-    canActivate: [AuthGuardService]
+    //canActivate: [AuthGuardService]
   }
   ,
   {

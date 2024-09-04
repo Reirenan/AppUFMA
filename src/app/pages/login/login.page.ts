@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UtilService } from 'src/app/services/util.service';
 import { AuthService } from 'src/app/auth.service';
 import { LoginService } from 'src/app/services/login.service';
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController} from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,6 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private loginService: LoginService,
     private toastController: ToastController,
-    private navCtrl: NavController,
   ) {}
 
   ngOnInit() {
@@ -46,9 +45,11 @@ export class LoginPage implements OnInit {
       position: 'top'
     }).then(toast => toast.present());
   }
+
   changePasswordViews() {
     this.passwordView = !this.passwordView;
   }
+
   onLogin() {
     if (this.loginForm.valid) {
       const email = this.loginForm.get('email')?.value;
@@ -57,8 +58,8 @@ export class LoginPage implements OnInit {
       this.loginService.login(email, password).subscribe({
         next: () => {
           this.authService.updateAuthTokenStatus(true);
+          this.util.navigateToPage('home');
           this.presentToast('Login feito com sucesso!', 'success');
-          this.navCtrl.navigateRoot('/home');
         },
         error: (err) => {
           console.error('Erro durante o login:', err);

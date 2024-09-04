@@ -25,4 +25,11 @@ export class NotificationsPage implements OnInit {
   onBack() {
     this.util.onBack();
   }
+  redirectionProfile(){
+    this.util.navigateToPage('account');
+  }
+
+  formBooks(){
+    this.util.navigateRoot('book-form');
+  }
 }

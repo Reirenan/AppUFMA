@@ -9,15 +9,22 @@
   <ion-toolbar mode="md">
     <ion-title>Profile</ion-title>
     <ion-buttons slot="end">
+      <!-- Botão de voltar -->
+      <ion-button (click)="onBack()" color="dark">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <!-- Botão de busca -->
       <ion-button color="dark">
         <ion-icon slot="icon-only" name="search-outline"></ion-icon>
       </ion-button>
+      <!-- Botão de opções -->
       <ion-button color="dark">
         <ion-icon slot="icon-only" name="ellipsis-horizontal-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content class="ion-padding">
   <div class="settings-content">

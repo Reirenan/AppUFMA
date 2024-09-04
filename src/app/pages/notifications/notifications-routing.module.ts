@@ -9,11 +9,23 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { NotificationsPage } from './notifications.page';
+import { AccountInfoPage } from '../account-info/account-info.page';
+import { AccountPageModule } from '../account/account.module';
+import { BookFormPage } from '../book-form/book-form.page';
+import { BookFormPageModule } from '../book-form/book-form.module';
 
 const routes: Routes = [
   {
     path: '',
     component: NotificationsPage
+  },
+  {
+    path: 'account',
+    component: AccountPageModule
+  },
+  {
+    path: 'book-form',
+    component: BookFormPageModule
   }
 ];
 
