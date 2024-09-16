@@ -27,16 +27,32 @@ export class AuthGuardService implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Promise<boolean | UrlTree> {
     
-    const authTokenPresent = await this.storage.get('accessToken');
-
+    // Certifique-se de que o Storage foi inicializado
+    await this.storage.create();
+    
+    // Recuperar o token do Storage
+    const authTokenPresent = sessionStorage.getItem('accessToken');
+    
+    console.log(authTokenPresent);
+    
     if (authTokenPresent) {
-      this.decodedToken = this.jwtDecoderService.decodeToken(authTokenPresent);
-      if (this.decodedToken.role) {
-        return true;
-      } else {
-        return this.router.parseUrl('/notPermission');
-      }     
+      try {
+        // Tente decodificar o token
+        this.decodedToken = this.jwtDecoderService.decodeToken(authTokenPresent);
+
+        if (this.decodedToken && this.decodedToken.role) {
+          console.log("Autorizado");
+          return true;
+        } else {
+          console.log("Token sem permissões adequadas");
+          return this.router.parseUrl('/notPermission');
+        }
+      } catch (error) {
+        console.log("Erro ao decodificar o token", error);
+        return this.router.parseUrl('/');
+      }
     } else {
+      console.log("Token não encontrado");
       return this.router.parseUrl('/');
     }
   }

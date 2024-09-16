@@ -11,7 +11,7 @@ import { IonContent } from '@ionic/angular';
 })
 export class BookFormPage implements OnInit {
   @ViewChild(IonContent) content: IonContent;
-
+  imageCounter: number = 1;
   bookName: string = '';
   publicationDate: string = '';
   synopsis: string = '';
@@ -19,7 +19,7 @@ export class BookFormPage implements OnInit {
   isForTrade: boolean = false;
   condition: string = '';
   imageUrls: File[] = []; // Aqui armazenamos os arquivos de imagem
-  previewImages: string[] = []; // Aqui armazenamos as URLs das imagens para pré-visualização
+  previewImages: any[] = [];
   comments: string = '';
   desiredTradeBooks: string = '';
 
@@ -49,23 +49,21 @@ export class BookFormPage implements OnInit {
 
   // Método para capturar as imagens carregadas e gerar pré-visualização
   onFileChange(event: any) {
-    if (event.target.files && event.target.files.length > 0) {
-      this.imageUrls = Array.from(event.target.files);
-
-      // Limpar as pré-visualizações anteriores
-      this.previewImages = [];
-
-      // Gerar pré-visualizações das imagens
-      this.imageUrls.forEach(file => {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.previewImages.push(e.target.result); // Adiciona a URL da imagem
-        };
-        reader.readAsDataURL(file); // Lê o arquivo de imagem e gera a URL
-      });
+    const files: FileList = event.target.files;
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.previewImages.push({
+          id: this.imageCounter++,  // Autoincrementa o ID da imagem
+          src: e.target.result
+        });
+      };
+      reader.readAsDataURL(files[i]);
     }
   }
-
+  removeImage(imageId: number) {
+    this.previewImages = this.previewImages.filter(image => image.id !== imageId);
+  }
   onSubmit() {
     const formData = new FormData(); // Usando FormData para o upload de arquivos
 

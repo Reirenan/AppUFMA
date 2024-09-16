@@ -15,3 +15,20 @@
     border-radius: 8px;
   }
 }
+.image-container {
+  position: relative;
+}
+
+.remove-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 24px;
+  color:brown;
+  cursor: pointer;
+}
+
+ion-img {
+  width: 100%;
+  height: auto;
+}

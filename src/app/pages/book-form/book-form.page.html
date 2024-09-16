@@ -40,7 +40,6 @@
 
     <!-- Campo de upload de imagens -->
     <ion-item lines="none" class="input-content">
-      <ion-label position="stacked">Upload Images</ion-label>
       <input type="file" (change)="onFileChange($event)" accept="image/*" multiple hidden #fileInput>
       <ion-button expand="block" color="primary" (click)="fileInput.click()">Escolher Imagens</ion-button>
     </ion-item>
@@ -49,12 +48,16 @@
     <div *ngIf="previewImages.length > 0" class="image-preview-container">
       <ion-grid>
         <ion-row>
-          <ion-col size="6" *ngFor="let image of previewImages">
-            <ion-img [src]="image"></ion-img>
+          <ion-col size="6" *ngFor="let image of previewImages" class="image-preview-col">
+            <div class="image-container">
+              <ion-img [src]="image.src"></ion-img>
+              <ion-icon name="close-circle" class="remove-icon" (click)="removeImage(image.id)"></ion-icon> <!-- Ícone de exclusão -->
+            </div>
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
+    
 
     <ion-item lines="none" class="input-content">
       <ion-textarea [(ngModel)]="comments" placeholder="Comments" rows="4"></ion-textarea>

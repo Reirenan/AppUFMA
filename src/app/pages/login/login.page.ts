@@ -56,15 +56,18 @@ export class LoginPage implements OnInit {
       const password = this.loginForm.get('password')?.value;
 
       this.loginService.login(email, password).subscribe({
-        next: () => {
+        next: (response) => {
+          console.log('Resposta da API:', response);
           this.authService.updateAuthTokenStatus(true);
           this.util.navigateToPage('home');
           this.presentToast('Login feito com sucesso!', 'success');
         },
-        error: (err) => {
-          console.error('Erro durante o login:', err);
-          this.presentToast('Erro inesperado! Tente novamente mais tarde', 'danger');
-      }});
+        error: (error) => {
+          console.error("Erro durante o login:", error.message || error.statusText);
+          console.log("Status:", error.status);  
+          console.log("Detalhes:", error.error); 
+        }
+      });
     } else {
       this.presentToast('Por favor, preencha todos os campos corretamente.', 'danger');
     }
